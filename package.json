@@ -1,0 +1,11 @@
+{
+  "name": "multicolor-sweeper-lab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check src/game-core.js && node --check src/app.js",
+    "serve": "node scripts/serve.mjs"
+  }
+}
