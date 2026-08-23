@@ -2,6 +2,8 @@
 
 3色・4色の爆弾を使った高密度マインスイーパーの、ゲームバランス検証用アプリです。
 
+**プレイURL：<https://hanagemaru.github.io/multicolor-sweeper-lab/>**
+
 ## 検証できる条件
 
 - 盤面：9×9固定
