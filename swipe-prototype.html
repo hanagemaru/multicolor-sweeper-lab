@@ -21,8 +21,8 @@
         <button type="button" data-colors="4">4色</button>
       </div>
       <label class="sensitivity">
-        <span>スワイプ判定距離 <strong id="threshold-value">18px</strong></span>
-        <input id="threshold" type="range" min="12" max="32" step="2" value="18" />
+        <span>スワイプ判定距離 <strong id="threshold-value">16px</strong></span>
+        <input id="threshold" type="range" min="12" max="32" step="2" value="16" />
       </label>
       <button id="new-board" type="button" class="new-board">新しい盤面</button>
     </section>
@@ -36,7 +36,7 @@
         <span class="tap">タップ<br><b>開く</b></span>
         <span class="yellow">黄 ↘</span>
       </div>
-      <p>同じ方向でもう一度スワイプすると解除。別方向なら色を直接変更します。</p>
+      <p>同じ方向でもう一度スワイプすると解除。別方向なら色を直接変更します。方向は判定距離に最初に到達した時点で固定します。</p>
     </section>
 
     <section class="play-card">
@@ -48,7 +48,7 @@
       <div class="board-wrap">
         <div id="board" class="board" role="grid" aria-label="9×9盤面"></div>
       </div>
-      <p class="hint">判定が敏感／鈍いと感じたら、上の「スワイプ判定距離」を変えて試してください。</p>
+      <p class="hint">16px到達時の序盤方向で判定を固定します。判定が敏感／鈍いと感じたら距離を変えて試してください。</p>
     </section>
   </main>
 
