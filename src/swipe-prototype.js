@@ -123,12 +123,13 @@ function gestureTarget(dx, dy) {
   return dx < 0 ? "green" : "yellow";
 }
 
-function gesturePreview(target) {
+function gesturePreview(target, locked = false) {
+  const prefix = locked ? "方向固定：" : "";
   if (!target) return `あと少し動かす（${state.swipeThreshold}pxで判定）`;
-  if (target === "invalid") return "斜め、または真上へスワイプ";
-  if (target === "yellow" && state.colorCount < 4) return "↘ 黄：4色モードのみ";
+  if (target === "invalid") return `${prefix}方向を判定できません`;
+  if (target === "yellow" && state.colorCount < 4) return `${prefix}↘ 黄：4色モードのみ`;
   const arrows = { neutral: "↑", red: "↖", blue: "↗", green: "↙", yellow: "↘" };
-  return `${arrows[target]} ${FLAG_LABELS[target]}`;
+  return `${prefix}${arrows[target]} ${FLAG_LABELS[target]}`;
 }
 
 function setFeedback(text, kind = "") {
@@ -204,6 +205,17 @@ function cellFromEvent(event) {
   };
 }
 
+function lockDirectionIfNeeded(event) {
+  if (!state.gesture || state.gesture.lockedTarget !== null) return;
+  const dx = event.clientX - state.gesture.startX;
+  const dy = event.clientY - state.gesture.startY;
+  const distance = Math.hypot(dx, dy);
+  if (distance < state.swipeThreshold) return;
+
+  state.gesture.lockedTarget = gestureTarget(dx, dy);
+  state.gesture.lockedDistance = distance;
+}
+
 elements.board.addEventListener("pointerdown", (event) => {
   if (event.button !== 0) return;
   const target = cellFromEvent(event);
@@ -218,6 +230,8 @@ elements.board.addEventListener("pointerdown", (event) => {
     startY: event.clientY,
     lastX: event.clientX,
     lastY: event.clientY,
+    lockedTarget: null,
+    lockedDistance: null,
   };
   render();
 });
@@ -227,6 +241,15 @@ elements.board.addEventListener("pointermove", (event) => {
   event.preventDefault();
   state.gesture.lastX = event.clientX;
   state.gesture.lastY = event.clientY;
+
+  lockDirectionIfNeeded(event);
+
+  if (state.gesture.lockedTarget !== null) {
+    const target = state.gesture.lockedTarget;
+    setFeedback(gesturePreview(target, true), target !== "invalid" ? target : "");
+    return;
+  }
+
   const dx = event.clientX - state.gesture.startX;
   const dy = event.clientY - state.gesture.startY;
   const target = gestureTarget(dx, dy);
@@ -240,21 +263,30 @@ elements.board.addEventListener("pointerup", (event) => {
   const dx = event.clientX - gesture.startX;
   const dy = event.clientY - gesture.startY;
   const distance = Math.hypot(dx, dy);
+
+  // 非常に速いスワイプでpointermoveが閾値を跨がなかった場合だけ、
+  // pointerup時点の序盤相当ベクトルで1回だけ判定する。
+  if (gesture.lockedTarget === null && distance >= state.swipeThreshold) {
+    gesture.lockedTarget = gestureTarget(dx, dy);
+    gesture.lockedDistance = distance;
+  }
+
   state.gesture = null;
 
-  if (distance <= TAP_MAX) {
+  // 一度でもスワイプ方向がロックされたら、その後開始点付近へ戻ってもタップにはしない。
+  if (gesture.lockedTarget === null && distance <= TAP_MAX) {
     handleReveal(gesture.row, gesture.col);
     return;
   }
-  if (distance < state.swipeThreshold) {
+  if (gesture.lockedTarget === null) {
     setFeedback("タップとスワイプの中間だったので操作をキャンセル");
     render();
     return;
   }
 
-  const target = gestureTarget(dx, dy);
+  const target = gesture.lockedTarget;
   if (!target || target === "invalid") {
-    setFeedback("方向を判定できなかったので操作をキャンセル");
+    setFeedback("序盤の方向を判定できなかったので操作をキャンセル");
     render();
     return;
   }
