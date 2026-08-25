@@ -1,0 +1,100 @@
+:root {
+  color-scheme: light;
+  --paper: #f5f1e8;
+  --panel: #fffdf8;
+  --ink: #202624;
+  --muted: #65706b;
+  --line: #cfc9bc;
+  --red: #d64252;
+  --blue: #2d65d8;
+  --green: #17845a;
+  --yellow: #a86f00;
+  --neutral: #5f6764;
+  font-family: Inter, "Hiragino Sans", "Yu Gothic UI", Meiryo, sans-serif;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; color: var(--ink); background: var(--paper); }
+button, input { font: inherit; }
+button { color: inherit; }
+
+.prototype-shell { width: min(100% - 20px, 560px); margin: 0 auto; padding: 22px 0 34px; }
+.eyebrow { margin: 0 0 6px; color: #246b52; font-size: .7rem; font-weight: 800; letter-spacing: .14em; }
+h1 { margin: 0 0 8px; font-size: clamp(1.55rem, 7vw, 2.4rem); letter-spacing: -.04em; }
+.lead { margin: 0; color: var(--muted); font-size: .86rem; line-height: 1.65; }
+
+.controls, .gesture-card, .play-card { margin-top: 14px; padding: 14px; border: 1px solid var(--line); background: var(--panel); }
+.controls { display: grid; gap: 12px; }
+.segmented { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; background: #e7e2d7; }
+.segmented button, .new-board { min-height: 42px; border: 0; background: transparent; font-weight: 800; }
+.segmented button.active { color: white; background: var(--ink); }
+.new-board { border: 1px solid var(--ink); background: white; }
+.sensitivity { display: grid; gap: 7px; color: var(--muted); font-size: .78rem; }
+.sensitivity strong { color: var(--ink); }
+.sensitivity input { width: 100%; accent-color: #246b52; }
+
+.gesture-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; align-items: center; text-align: center; }
+.gesture-grid span { min-height: 42px; display: grid; place-items: center; padding: 5px; border: 1px solid #e4dfd4; background: #faf7f0; font-size: .78rem; font-weight: 900; }
+.gesture-grid .tap { min-height: 58px; color: var(--ink); }
+.gesture-card p, .hint { margin: 10px 0 0; color: var(--muted); font-size: .72rem; line-height: 1.55; text-align: center; }
+.red { color: var(--red); }
+.blue { color: var(--blue); }
+.green { color: var(--green); }
+.yellow { color: var(--yellow); }
+.neutral { color: var(--neutral); }
+
+.status-row { display: flex; justify-content: space-between; gap: 10px; color: var(--muted); font-size: .74rem; font-weight: 800; }
+.feedback { min-height: 36px; margin: 10px 0; display: grid; place-items: center; padding: 7px 10px; border: 1px solid #d9d4c8; background: #f3efe6; font-size: .78rem; font-weight: 800; text-align: center; }
+.feedback.red { color: var(--red); background: #fff4f5; }
+.feedback.blue { color: var(--blue); background: #f3f6ff; }
+.feedback.green { color: var(--green); background: #f2fbf6; }
+.feedback.yellow { color: var(--yellow); background: #fff9e9; }
+.feedback.neutral { color: var(--neutral); }
+
+.board-wrap { padding: 8px; border: 1px solid #17221e; background: #28342f; }
+.board {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  gap: 2px;
+  width: 100%;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+.cell {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  min-width: 0;
+  padding: 0;
+  border: 1px solid #aaa69d;
+  background: #d9d5ca;
+  overflow: hidden;
+}
+.cell.revealed { border-color: #ddd8cd; background: #fbf9f3; }
+.cell.exploded { background: #352527; box-shadow: inset 0 0 0 3px #e76a72; }
+.cell.flagged { background: #eee6ce; }
+.cell.gesture-source { outline: 3px solid #ffef8a; outline-offset: -3px; z-index: 2; }
+
+.clue-grid { display: grid; grid-template-columns: repeat(2, 1fr); width: 100%; height: 100%; padding: 1px; }
+.clue { display: grid; place-items: center; font-size: clamp(.55rem, 3vw, .82rem); line-height: 1; font-weight: 900; }
+.clue.unused { visibility: hidden; }
+.flag-mark { font-size: clamp(.95rem, 5vw, 1.45rem); font-weight: 900; transform: translateY(-1px); }
+.flag-neutral .flag-mark { color: var(--neutral); }
+.flag-red .flag-mark { color: var(--red); }
+.flag-blue .flag-mark { color: var(--blue); }
+.flag-green .flag-mark { color: var(--green); }
+.flag-yellow .flag-mark { color: var(--yellow); }
+.mine-mark { font-size: clamp(1rem, 5vw, 1.5rem); }
+.mine-red .mine-mark { color: var(--red); }
+.mine-blue .mine-mark { color: var(--blue); }
+.mine-green .mine-mark { color: var(--green); }
+.mine-yellow .mine-mark { color: var(--yellow); }
+
+@media (min-width: 500px) {
+  .prototype-shell { padding-top: 32px; }
+  .controls { grid-template-columns: 160px 1fr auto; align-items: center; }
+  .new-board { padding-inline: 16px; }
+}
