@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#151923" />
+  <title>3色 vs 4色 比較テスト</title>
+  <link rel="stylesheet" href="./src/compare-colors.css" />
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <p class="eyebrow">COLOR MODE COMPARISON</p>
+      <h1>3色 vs 4色</h1>
+      <p>同じ爆弾位置・同じ初手で遊び比べます。3色/4色の両方がNo-Guessで、4色側に少し情報優位がある盤面だけを用意しています。</p>
+    </header>
+
+    <section id="selection-view" class="panel">
+      <div class="panel-head">
+        <div>
+          <p class="step">01 / BOARD</p>
+          <h2>比較する盤面を選ぶ</h2>
+        </div>
+        <p>各盤面20爆弾。初手は中央で固定です。</p>
+      </div>
+      <div id="board-cards" class="board-cards"></div>
+
+      <div class="results-wrap">
+        <h3>今回の記録</h3>
+        <div id="results-table" class="results-table"></div>
+      </div>
+    </section>
+
+    <section id="prestart-view" class="panel prestart" hidden>
+      <p class="step">02 / READY</p>
+      <h2><span id="ready-board-name">BOARD A</span> を開始</h2>
+      <p class="ready-copy">ここで初めて色数を選びます。選択後にSTARTを押すと、中央セルが自動で開いてタイマーが始まります。</p>
+
+      <fieldset>
+        <legend>COLOR MODE</legend>
+        <div id="mode-choice" class="mode-choice">
+          <button type="button" data-colors="3" class="active">
+            <strong>3 COLORS</strong>
+            <span>情報は粗い / 操作はシンプル</span>
+          </button>
+          <button type="button" data-colors="4">
+            <strong>4 COLORS</strong>
+            <span>情報は細かい / 操作は複雑</span>
+          </button>
+        </div>
+      </fieldset>
+
+      <div class="ready-actions">
+        <button id="back-to-boards" type="button" class="secondary">戻る</button>
+        <button id="start-game" type="button" class="primary">START</button>
+      </div>
+    </section>
+
+    <section id="game-view" class="panel game-panel" hidden>
+      <div class="game-head">
+        <div>
+          <p class="step">03 / PLAY</p>
+          <h2><span id="game-board-name">BOARD A</span>・<span id="game-mode">3 COLORS</span></h2>
+        </div>
+        <div class="timer" id="timer">0:00.0</div>
+      </div>
+
+      <div class="status-row">
+        <span id="game-status">プレイ中</span>
+        <span id="flag-count">旗 0 / 20</span>
+      </div>
+
+      <div class="gesture-guide" aria-label="操作方法">
+        <span class="red">↖ 赤</span>
+        <span class="neutral">↑ 無色</span>
+        <span class="blue">青 ↗</span>
+        <span class="green">↙ 緑</span>
+        <span class="tap">タップ<br><b>開く / Chord</b></span>
+        <span class="yellow">黄 ↘</span>
+      </div>
+
+      <div id="gesture-feedback" class="feedback" aria-live="polite">スワイプ判定：20px・序盤の方向で固定</div>
+
+      <div class="board-wrap">
+        <div id="board" class="board" role="grid" aria-label="9×9盤面"></div>
+      </div>
+
+      <p class="hint">タップ＝開く。20pxスワイプした時点の方向を固定。開封済み数字をタップすると、周囲の旗数が合っている場合にChordします。</p>
+
+      <div id="finish-card" class="finish-card" hidden>
+        <h3 id="finish-title">クリア</h3>
+        <p id="finish-detail"></p>
+        <p id="solver-note" class="solver-note"></p>
+        <div class="finish-actions">
+          <button id="retry-other-mode" type="button" class="primary">同じ盤面を別の色数で</button>
+          <button id="choose-board" type="button" class="secondary">盤面選択へ</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="./src/compare-colors.js"></script>
+</body>
+</html>
