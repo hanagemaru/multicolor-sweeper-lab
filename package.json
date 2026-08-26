@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "test": "node --test",
-    "check": "node --check src/game-core.js && node --check src/app.js",
+    "check": "node --check src/game-core.js && node --check src/solver.js && node --check src/no-guess-generator.js && node --check src/benchmark-core.js && node --check src/generator-worker.js && node --check src/app.js",
+    "benchmark": "node scripts/benchmark.mjs",
     "serve": "node scripts/serve.mjs"
   }
 }
