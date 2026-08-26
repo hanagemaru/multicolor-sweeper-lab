@@ -1,6 +1,6 @@
 # Multicolor Sweeper Lab
 
-3色・4色の爆弾を使った高密度マインスイーパーの、ゲームバランス検証用アプリです。
+3色・4色の爆弾を使った高密度マインスイーパーの、ゲームバランスとNo-Guess盤面生成の検証用アプリです。
 
 **プレイURL：<https://hanagemaru.github.io/multicolor-sweeper-lab/>**
 
@@ -36,9 +36,30 @@ npm run serve
 ```bash
 npm test
 npm run check
+npm run benchmark -- 20 benchmark-results/node-latest.json
 ```
 
 外部ライブラリを使わない静的Webアプリなので、依存関係のインストールは不要です。
+
+ブラウザ実測は `benchmark.html` を開き、「測定開始」を押します。生成とSolverは
+Web Worker内で動くため、UIメインスレッドを占有しません。
+
+## No-Guessエンジン
+
+- `src/solver.js`: 見えているClueとセルdomainだけを使うルールベースSolver
+- `src/no-guess-generator.js`: Seedとattempt indexによる決定論的な再生成・条件A〜Dの選別
+- `src/benchmark-core.js`: 中央・中央付近・辺・角・ランダム初手の共通ベンチマーク
+- `src/generator-worker.js`: ブラウザ用Web Worker
+- `benchmark-results/`: 固定条件での測定結果
+
+Solverは単一Clueの色別/総数制約、全盤面の総爆弾数、隣接Clueの
+subset/difference、`safe / red / blue / green / yellow` のdomain伝播を使います。
+確率、ランダム手、隠れた正解を推論には使いません。隠れた盤面は、テスト時に
+推論が正解と矛盾しないことを検査するためだけに参照します。
+
+条件の定義、推論トレース、color-essential、公平性フィルタの詳細は
+[`SPEC.md`](./SPEC.md)、測定結果は
+[`benchmark-results/README.md`](./benchmark-results/README.md)を参照してください。
 
 ## 既存Gradient Sweeperから引き継いだ考え方
 
