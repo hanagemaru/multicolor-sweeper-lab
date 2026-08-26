@@ -14,13 +14,14 @@ const FIRST_COL = 4;
 const SWIPE_THRESHOLD = 20;
 const TAP_MAX = 8;
 
-// 現行generatorを再現した比較用候補。
-// 3色/4色とも human-rule solver（基本＋差分、guessなし）でclearし、
-// 4色側が1 reasoning round少なかった盤面を採用。
+// 厳密なNo-Guess再検証を通過した比較用候補。
+// 初手からクリアまで、各段階で論理的に確定する安全マスが存在することをトレース済み。
+// 3色/4色ともhuman-rule solver（基本＋差分、guessなし）でclearし、
+// さらに色なしでは解けず、4色側が1 reasoning round少ない盤面を採用。
 const TEST_BOARDS = [
-  { id: "A", seed: "cmp-004746", solverRounds: { 3: 4, 4: 3 }, subsetRounds: { 3: 1, 4: 0 } },
-  { id: "B", seed: "cmp-006236", solverRounds: { 3: 4, 4: 3 }, subsetRounds: { 3: 1, 4: 1 } },
-  { id: "C", seed: "cmp-042348", solverRounds: { 3: 4, 4: 3 }, subsetRounds: { 3: 0, 4: 0 } },
+  { id: "A", seed: "cur-000387", solverRounds: { 3: 5, 4: 4 } },
+  { id: "B", seed: "cur-000293", solverRounds: { 3: 7, 4: 6 } },
+  { id: "C", seed: "cur-000271", solverRounds: { 3: 8, 4: 7 } },
 ];
 
 const FLAG_LABELS = {
