@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { minePositions } from "../src/game-core.js";
+import { playtestBaseSeed } from "../src/compare-playtest-core.js";
 import {
   attemptSeed,
   evaluateCandidate,
@@ -45,3 +46,20 @@ test("条件A〜Dは段階的に厳しくなる", () => {
   }
 });
 
+test("比較プレイ用B/C/D盤面を決定論的に生成できる", () => {
+  for (const filter of ["B", "C", "D"]) {
+    const options = {
+      baseSeed: playtestBaseSeed(filter, 0, 0),
+      filter,
+      maxAttempts: 2_000,
+      firstRow: 4,
+      firstCol: 4,
+      includeTrace: false,
+    };
+    const first = generateNoGuess(options);
+    const second = generateNoGuess(options);
+    assert.equal(first.failed, undefined, `filter ${filter} did not generate`);
+    assert.equal(first.flags[filter], true);
+    assert.equal(first.seed, second.seed);
+  }
+});
