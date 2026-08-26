@@ -14,14 +14,14 @@ const FIRST_COL = 4;
 const SWIPE_THRESHOLD = 20;
 const TAP_MAX = 8;
 
-// 厳密なNo-Guess再検証を通過した比較用候補。
-// 初手からクリアまで、各段階で論理的に確定する安全マスが存在することをトレース済み。
-// 3色/4色ともhuman-rule solver（基本＋差分、guessなし）でclearし、
-// さらに色なしでは解けず、4色側が1 reasoning round少ない盤面を採用。
+// 比較テスト第2セット。
+// 3色/4色ともhuman-rule solver（基本＋差分、guessなし）でclear。
+// 初手からクリアまで確定手が途切れず、色なしでは解けないことも確認済み。
+// 今回は3色を先に遊び、その後4色を遊んで順序効果を逆向きに確認する。
 const TEST_BOARDS = [
-  { id: "A", seed: "cur-000387", solverRounds: { 3: 5, 4: 4 } },
-  { id: "B", seed: "cur-000293", solverRounds: { 3: 7, 4: 6 } },
-  { id: "C", seed: "cur-000271", solverRounds: { 3: 8, 4: 7 } },
+  { id: "D", seed: "set2-000050", solverRounds: { 3: 6, 4: 5 } },
+  { id: "E", seed: "set2-000179", solverRounds: { 3: 8, 4: 7 } },
+  { id: "F", seed: "set2-000302", solverRounds: { 3: 9, 4: 7 } },
 ];
 
 const FLAG_LABELS = {
@@ -108,7 +108,7 @@ function renderBoardCards() {
       card.className = "board-card";
       card.innerHTML = `
         <strong>BOARD ${testBoard.id}</strong>
-        <p>3色/4色ともNo-Guess。4色側に軽い情報優位。</p>
+        <p>3色/4色ともNo-Guess。今回は3色→4色の順で比較推奨。</p>
         <button type="button" data-board="${testBoard.id}">この盤面を準備</button>
       `;
       return card;
@@ -168,7 +168,6 @@ function beginGame() {
   state.elapsedMs = 0;
   state.startedAt = Date.now();
 
-  // 同じ盤面を公平に比較するため、初手は中央固定で自動開封。
   revealCell(state.board, FIRST_ROW, FIRST_COL);
 
   elements.gameBoardName.textContent = `BOARD ${state.selectedBoard.id}`;
@@ -449,7 +448,6 @@ elements.board.addEventListener("pointerup", (event) => {
   const dy = event.clientY - gesture.startY;
   const distance = Math.hypot(dx, dy);
 
-  // 非常に速いswipeでpointermoveが閾値を拾えなかった場合だけ、終点で補完する。
   if (!gesture.locked && distance >= SWIPE_THRESHOLD) {
     gesture.target = gestureTarget(dx, dy);
     gesture.locked = true;
@@ -481,7 +479,6 @@ for (const eventName of ["pointercancel", "lostpointercapture"]) {
   });
 }
 
-// pointerupだけで操作を確定するためclickは使わない。
 elements.board.addEventListener("click", (event) => event.preventDefault());
 elements.board.addEventListener("contextmenu", (event) => event.preventDefault());
 
