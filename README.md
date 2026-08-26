@@ -4,6 +4,8 @@
 
 **プレイURL：<https://hanagemaru.github.io/multicolor-sweeper-lab/>**
 
+**B/C/D比較プレイ：<https://hanagemaru.github.io/multicolor-sweeper-lab/compare-colors.html>**
+
 ## 検証できる条件
 
 - 盤面：9×9固定
@@ -43,6 +45,9 @@ npm run benchmark -- 20 benchmark-results/node-latest.json
 
 ブラウザ実測は `benchmark.html` を開き、「測定開始」を押します。生成とSolverは
 Web Worker内で動くため、UIメインスレッドを占有しません。
+
+`compare-colors.html` では条件B/C/Dを切り替え、決定論的に生成される3盤面セットを
+3色・4色で実プレイ比較できます。「次の3盤面」で同条件の盤面を追加できます。
 
 ## No-Guessエンジン
 

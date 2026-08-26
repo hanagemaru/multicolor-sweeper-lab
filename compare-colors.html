@@ -12,17 +12,43 @@
     <header class="hero">
       <p class="eyebrow">COLOR MODE COMPARISON</p>
       <h1>3色 vs 4色</h1>
-      <p>同じ爆弾位置・同じ初手で遊び比べます。3色/4色の両方がNo-Guessで、4色側に少し情報優位がある盤面だけを用意しています。</p>
+      <p>同じ爆弾位置・同じ初手で遊び比べます。B・C・Dから採用条件を選び、3色/4色の体感差を比較できます。</p>
     </header>
 
     <section id="selection-view" class="panel">
       <div class="panel-head">
         <div>
-          <p class="step">01 / BOARD</p>
-          <h2>比較する盤面を選ぶ</h2>
+          <p class="step">01 / FILTER &amp; BOARD</p>
+          <h2>条件と盤面を選ぶ</h2>
         </div>
-        <p>各盤面20爆弾。初手は中央で固定です。</p>
+        <p>各盤面20爆弾。初手中央、3色/4色の爆弾位置は共通です。</p>
       </div>
+
+      <fieldset class="filter-fieldset">
+        <legend>盤面採用条件</legend>
+        <div id="filter-choice" class="filter-choice">
+          <button type="button" data-filter="B">
+            <strong>B</strong>
+            <span>色が攻略に必要</span>
+          </button>
+          <button type="button" data-filter="C" class="active">
+            <strong>C</strong>
+            <span>4色が同等以上</span>
+          </button>
+          <button type="button" data-filter="D">
+            <strong>D</strong>
+            <span>4色が1ラウンド以上有利</span>
+          </button>
+        </div>
+        <p id="filter-description" class="filter-description"></p>
+      </fieldset>
+
+      <div class="set-row">
+        <strong id="set-name">SET 1</strong>
+        <button id="previous-set" type="button" class="secondary">前の3盤面</button>
+        <button id="next-set" type="button" class="secondary">次の3盤面</button>
+      </div>
+      <p id="generation-status" class="generation-status" aria-live="polite"></p>
       <div id="board-cards" class="board-cards"></div>
 
       <div class="results-wrap">
@@ -86,6 +112,10 @@
       </div>
 
       <p class="hint">タップ＝開く。20pxスワイプした時点の方向を固定。開封済み数字をタップすると、周囲の旗数が合っている場合にChordします。</p>
+
+      <div class="play-actions">
+        <button id="mark-stuck" type="button" class="secondary">論理で詰まった</button>
+      </div>
 
       <div id="finish-card" class="finish-card" hidden>
         <h3 id="finish-title">クリア</h3>
