@@ -7,6 +7,8 @@
 - color-essentialと公平性フィルタA〜Dを実装済み
 - 推論トレース、自動テスト、Node/ブラウザ共通benchmark、Web Workerを実装済み
 - Node benchmark（各条件×各初手20回）を保存済み
+- Chrome 151のWeb Worker benchmark（同400生成）を保存済み、全件成功
+- PR #6でSolver本体をmainへマージ済み
 
 ## 確定事項
 
@@ -23,6 +25,5 @@
 
 ## 次の作業
 
-1. 実ブラウザのWorker benchmark結果を保存する
-2. 実装ブランチのPRを作成しレビューする
-3. Solver確定後、製品版RepoへWorker境界ごと移植する
+1. 条件B/C/Dを実プレイ比較し、製品の採用フィルタを決める
+2. 採用条件決定後、製品版RepoへWorker境界ごと移植する
