@@ -6,8 +6,9 @@
     <title>No-Guess Generator Browser Benchmark</title>
     <style>
       body { max-width: 1100px; margin: 32px auto; padding: 0 16px; font-family: system-ui, sans-serif; color: #182030; }
-      .controls { display: flex; align-items: center; gap: 12px; margin: 20px 0; }
-      input { width: 70px; padding: 8px; }
+      .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 20px 0; }
+      .checks { display: inline-flex; gap: 8px; }
+      input[type="number"] { width: 70px; padding: 8px; }
       button { padding: 9px 16px; }
       table { width: 100%; border-collapse: collapse; font-size: 14px; }
       th, td { border: 1px solid #ccd2dc; padding: 8px; text-align: right; }
@@ -17,9 +18,14 @@
   </head>
   <body>
     <h1>No-Guess Generator Browser Benchmark</h1>
-    <p>20爆弾、条件A〜D、中央・中央付近・辺・角・ランダム初手をWeb Worker内で測定します。</p>
+    <p>条件Cについて、選択した爆弾数を中央・中央付近・辺・角・ランダム初手でWeb Worker内測定します。</p>
     <div class="controls">
       <label>各条件・初手の回数 <input id="runs" type="number" min="1" max="100" value="10" /></label>
+      <span class="checks" aria-label="爆弾数">
+        <label><input type="checkbox" name="mine-count" value="15" checked />15個</label>
+        <label><input type="checkbox" name="mine-count" value="20" checked />20個</label>
+        <label><input type="checkbox" name="mine-count" value="25" checked />25個</label>
+      </span>
       <button id="run-benchmark" type="button">測定開始</button>
       <span id="benchmark-status">待機中</span>
     </div>
@@ -27,4 +33,3 @@
     <script type="module" src="./src/benchmark-ui.js"></script>
   </body>
 </html>
-

@@ -1,5 +1,5 @@
 import { generateNoGuess } from "./no-guess-generator.js";
-import { runBenchmark } from "./benchmark-core.js";
+import { runBenchmark, runDifficultyBenchmark } from "./benchmark-core.js";
 
 self.addEventListener("message", async (event) => {
   const { type, requestId, options } = event.data;
@@ -19,9 +19,18 @@ self.addEventListener("message", async (event) => {
       self.postMessage({ type: "benchmark-complete", requestId, result });
       return;
     }
+    if (type === "difficulty-benchmark") {
+      const result = await runDifficultyBenchmark({
+        ...options,
+        yieldEvery: 0,
+        environment: { userAgent: self.navigator.userAgent, runtime: "Web Worker" },
+        onProgress: (progress) => self.postMessage({ type: "progress", requestId, progress }),
+      });
+      self.postMessage({ type: "difficulty-benchmark-complete", requestId, result });
+      return;
+    }
     throw new Error(`Unknown worker request: ${type}`);
   } catch (error) {
     self.postMessage({ type: "error", requestId, message: error.message, stack: error.stack });
   }
 });
-
