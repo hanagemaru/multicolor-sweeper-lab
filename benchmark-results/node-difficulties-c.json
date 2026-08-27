@@ -1,0 +1,582 @@
+{
+  "metadata": {
+    "createdAt": "2026-08-27T14:21:41.398Z",
+    "runsPerFilterAndScenario": 20,
+    "maxAttempts": 2000,
+    "mineCounts": [
+      15,
+      20,
+      25
+    ],
+    "suiteSeed": "benchmark-v1",
+    "filters": [
+      "C"
+    ],
+    "scenarios": [
+      "center",
+      "near-center",
+      "edge",
+      "corner",
+      "random"
+    ],
+    "runtime": "Node v24.19.0",
+    "userAgent": null
+  },
+  "byMineCount": {
+    "15": {
+      "metadata": {
+        "createdAt": "2026-08-27T14:20:58.741Z",
+        "runsPerFilterAndScenario": 20,
+        "maxAttempts": 2000,
+        "mineCount": 15,
+        "suiteSeed": "benchmark-v1",
+        "filters": [
+          "C"
+        ],
+        "scenarios": [
+          "center",
+          "near-center",
+          "edge",
+          "corner",
+          "random"
+        ],
+        "runtime": "Node v24.19.0",
+        "userAgent": null
+      },
+      "overall": {
+        "C": {
+          "runs": 100,
+          "successes": 100,
+          "failures": 0,
+          "adoptionRate": 0.2159827213822894,
+          "averageAttempts": 4.63,
+          "timingMs": {
+            "average": 38.95546813999999,
+            "p50": 28.54404899999963,
+            "p95": 130.60863300000028,
+            "worst": 188.5580420000001
+          },
+          "inference": {
+            "three": {
+              "rounds": 5.62,
+              "deductions": 147.79,
+              "subsetDifferenceUses": 17.98
+            },
+            "four": {
+              "rounds": 5.26,
+              "deductions": 196.39,
+              "subsetDifferenceUses": 17.35
+            }
+          }
+        }
+      },
+      "rows": [
+        {
+          "filter": "C",
+          "scenario": "center",
+          "runs": 20,
+          "successes": 20,
+          "failures": 0,
+          "adoptionRate": 0.273972602739726,
+          "averageAttempts": 3.65,
+          "timingMs": {
+            "average": 45.82171924999999,
+            "p50": 30.723422,
+            "p95": 143.499682,
+            "worst": 180.330497
+          },
+          "inference": {
+            "three": {
+              "rounds": 4.05,
+              "deductions": 138.6,
+              "subsetDifferenceUses": 16.1
+            },
+            "four": {
+              "rounds": 3.95,
+              "deductions": 185.4,
+              "subsetDifferenceUses": 15.85
+            }
+          }
+        },
+        {
+          "filter": "C",
+          "scenario": "near-center",
+          "runs": 20,
+          "successes": 20,
+          "failures": 0,
+          "adoptionRate": 0.5128205128205128,
+          "averageAttempts": 1.95,
+          "timingMs": {
+            "average": 19.943106149999977,
+            "p50": 11.369114999999965,
+            "p95": 62.19959199999994,
+            "worst": 66.62367800000015
+          },
+          "inference": {
+            "three": {
+              "rounds": 4.25,
+              "deductions": 147.2,
+              "subsetDifferenceUses": 19.45
+            },
+            "four": {
+              "rounds": 4.15,
+              "deductions": 195.55,
+              "subsetDifferenceUses": 19.65
+            }
+          }
+        },
+        {
+          "filter": "C",
+          "scenario": "edge",
+          "runs": 20,
+          "successes": 20,
+          "failures": 0,
+          "adoptionRate": 0.25,
+          "averageAttempts": 4,
+          "timingMs": {
+            "average": 39.72438735000001,
+            "p50": 25.784233000000086,
+            "p95": 77.02662099999998,
+            "worst": 135.49072999999999
+          },
+          "inference": {
+            "three": {
+              "rounds": 6.05,
+              "deductions": 158.45,
+              "subsetDifferenceUses": 18.05
+            },
+            "four": {
+              "rounds": 5.75,
+              "deductions": 207.6,
+              "subsetDifferenceUses": 17.1
+            }
+          }
+        },
+        {
+          "filter": "C",
+          "scenario": "corner",
+          "runs": 20,
+          "successes": 20,
+          "failures": 0,
+          "adoptionRate": 0.10989010989010989,
+          "averageAttempts": 9.1,
+          "timingMs": {
+            "average": 53.06410679999997,
+            "p50": 37.349061999999776,
+            "p95": 136.74272500000006,
+            "worst": 188.5580420000001
+          },
+          "inference": {
+            "three": {
+              "rounds": 7.6,
+              "deductions": 154.45,
+              "subsetDifferenceUses": 18.4
+            },
+            "four": {
+              "rounds": 6.95,
+              "deductions": 207.2,
+              "subsetDifferenceUses": 16.55
+            }
+          }
+        },
+        {
+          "filter": "C",
+          "scenario": "random",
+          "runs": 20,
+          "successes": 20,
+          "failures": 0,
+          "adoptionRate": 0.2247191011235955,
+          "averageAttempts": 4.45,
+          "timingMs": {
+            "average": 36.22402114999998,
+            "p50": 35.56888500000014,
+            "p95": 81.76361499999985,
+            "worst": 83.62414200000012
+          },
+          "inference": {
+            "three": {
+              "rounds": 6.15,
+              "deductions": 140.25,
+              "subsetDifferenceUses": 17.9
+            },
+            "four": {
+              "rounds": 5.5,
+              "deductions": 186.2,
+              "subsetDifferenceUses": 17.6
+            }
+          }
+        }
+      ]
+    },
+    "20": {
+      "metadata": {
+        "createdAt": "2026-08-27T14:21:03.395Z",
+        "runsPerFilterAndScenario": 20,
+        "maxAttempts": 2000,
+        "mineCount": 20,
+        "suiteSeed": "benchmark-v1",
+        "filters": [
+          "C"
+        ],
+        "scenarios": [
+          "center",
+          "near-center",
+          "edge",
+          "corner",
+          "random"
+        ],
+        "runtime": "Node v24.19.0",
+        "userAgent": null
+      },
+      "overall": {
+        "C": {
+          "runs": 100,
+          "successes": 100,
+          "failures": 0,
+          "adoptionRate": 0.12853470437017994,
+          "averageAttempts": 7.78,
+          "timingMs": {
+            "average": 46.48517962999998,
+            "p50": 33.1144690000001,
+            "p95": 129.82220700000016,
+            "worst": 248.0758139999998
+          },
+          "inference": {
+            "three": {
+              "rounds": 7.36,
+              "deductions": 170.96,
+              "subsetDifferenceUses": 20.09
+            },
+            "four": {
+              "rounds": 6.87,
+              "deductions": 228.16,
+              "subsetDifferenceUses": 19.72
+            }
+          }
+        }
+      },
+      "rows": [
+        {
+          "filter": "C",
+          "scenario": "center",
+          "runs": 20,
+          "successes": 20,
+          "failures": 0,
+          "adoptionRate": 0.14184397163120568,
+          "averageAttempts": 7.05,
+          "timingMs": {
+            "average": 46.564951050000104,
+            "p50": 37.76174100000026,
+            "p95": 121.30485200000021,
+            "worst": 137.7713600000002
+          },
+          "inference": {
+            "three": {
+              "rounds": 5.3,
+              "deductions": 166.95,
+              "subsetDifferenceUses": 18.95
+            },
+            "four": {
+              "rounds": 5,
+              "deductions": 223.95,
+              "subsetDifferenceUses": 19.1
+            }
+          }
+        },
+        {
+          "filter": "C",
+          "scenario": "near-center",
+          "runs": 20,
+          "successes": 20,
+          "failures": 0,
+          "adoptionRate": 0.19047619047619047,
+          "averageAttempts": 5.25,
+          "timingMs": {
+            "average": 32.459926899999935,
+            "p50": 21.760992000000442,
+            "p95": 98.37173799999982,
+            "worst": 115.7850499999995
+          },
+          "inference": {
+            "three": {
+              "rounds": 6.4,
+              "deductions": 164.75,
+              "subsetDifferenceUses": 20.55
+            },
+            "four": {
+              "rounds": 5.75,
+              "deductions": 222.65,
+              "subsetDifferenceUses": 20.7
+            }
+          }
+        },
+        {
+          "filter": "C",
+          "scenario": "edge",
+          "runs": 20,
+          "successes": 20,
+          "failures": 0,
+          "adoptionRate": 0.10695187165775401,
+          "averageAttempts": 9.35,
+          "timingMs": {
+            "average": 57.36876989999996,
+            "p50": 35.05794900000001,
+            "p95": 188.22606499999983,
+            "worst": 248.0758139999998
+          },
+          "inference": {
+            "three": {
+              "rounds": 8,
+              "deductions": 173.7,
+              "subsetDifferenceUses": 18.1
+            },
+            "four": {
+              "rounds": 7.45,
+              "deductions": 228.7,
+              "subsetDifferenceUses": 18
+            }
+          }
+        },
+        {
+          "filter": "C",
+          "scenario": "corner",
+          "runs": 20,
+          "successes": 20,
+          "failures": 0,
+          "adoptionRate": 0.09950248756218906,
+          "averageAttempts": 10.05,
+          "timingMs": {
+            "average": 47.22782619999998,
+            "p50": 37.75610299999971,
+            "p95": 108.97580999999991,
+            "worst": 129.82220700000016
+          },
+          "inference": {
+            "three": {
+              "rounds": 9,
+              "deductions": 181.2,
+              "subsetDifferenceUses": 22.55
+            },
+            "four": {
+              "rounds": 8.55,
+              "deductions": 241.5,
+              "subsetDifferenceUses": 22.3
+            }
+          }
+        },
+        {
+          "filter": "C",
+          "scenario": "random",
+          "runs": 20,
+          "successes": 20,
+          "failures": 0,
+          "adoptionRate": 0.1388888888888889,
+          "averageAttempts": 7.2,
+          "timingMs": {
+            "average": 48.80442409999996,
+            "p50": 32.367952000000514,
+            "p95": 147.39252399999987,
+            "worst": 186.67177300000003
+          },
+          "inference": {
+            "three": {
+              "rounds": 8.1,
+              "deductions": 168.2,
+              "subsetDifferenceUses": 20.3
+            },
+            "four": {
+              "rounds": 7.6,
+              "deductions": 224,
+              "subsetDifferenceUses": 18.5
+            }
+          }
+        }
+      ]
+    },
+    "25": {
+      "metadata": {
+        "createdAt": "2026-08-27T14:21:41.398Z",
+        "runsPerFilterAndScenario": 20,
+        "maxAttempts": 2000,
+        "mineCount": 25,
+        "suiteSeed": "benchmark-v1",
+        "filters": [
+          "C"
+        ],
+        "scenarios": [
+          "center",
+          "near-center",
+          "edge",
+          "corner",
+          "random"
+        ],
+        "runtime": "Node v24.19.0",
+        "userAgent": null
+      },
+      "overall": {
+        "C": {
+          "runs": 100,
+          "successes": 100,
+          "failures": 0,
+          "adoptionRate": 0.011029006286533583,
+          "averageAttempts": 90.67,
+          "timingMs": {
+            "average": 379.98458886000003,
+            "p50": 252.97792100000152,
+            "p95": 1076.2586379999993,
+            "worst": 1872.168267000001
+          },
+          "inference": {
+            "three": {
+              "rounds": 8.28,
+              "deductions": 181.69,
+              "subsetDifferenceUses": 20.68
+            },
+            "four": {
+              "rounds": 7.63,
+              "deductions": 243.28,
+              "subsetDifferenceUses": 20.46
+            }
+          }
+        }
+      },
+      "rows": [
+        {
+          "filter": "C",
+          "scenario": "center",
+          "runs": 20,
+          "successes": 20,
+          "failures": 0,
+          "adoptionRate": 0.020876826722338204,
+          "averageAttempts": 47.9,
+          "timingMs": {
+            "average": 267.75583770000003,
+            "p50": 212.9522960000013,
+            "p95": 498.89894900000036,
+            "worst": 695.0913689999998
+          },
+          "inference": {
+            "three": {
+              "rounds": 6.75,
+              "deductions": 177.15,
+              "subsetDifferenceUses": 22.4
+            },
+            "four": {
+              "rounds": 6.25,
+              "deductions": 236.5,
+              "subsetDifferenceUses": 22.25
+            }
+          }
+        },
+        {
+          "filter": "C",
+          "scenario": "near-center",
+          "runs": 20,
+          "successes": 20,
+          "failures": 0,
+          "adoptionRate": 0.026350461133069828,
+          "averageAttempts": 37.95,
+          "timingMs": {
+            "average": 213.57254989999993,
+            "p50": 99.30540499999915,
+            "p95": 477.94515200000023,
+            "worst": 1076.2586379999993
+          },
+          "inference": {
+            "three": {
+              "rounds": 6.7,
+              "deductions": 178.05,
+              "subsetDifferenceUses": 21.35
+            },
+            "four": {
+              "rounds": 5.55,
+              "deductions": 239.45,
+              "subsetDifferenceUses": 19.5
+            }
+          }
+        },
+        {
+          "filter": "C",
+          "scenario": "edge",
+          "runs": 20,
+          "successes": 20,
+          "failures": 0,
+          "adoptionRate": 0.011961722488038277,
+          "averageAttempts": 83.6,
+          "timingMs": {
+            "average": 455.7186500999998,
+            "p50": 254.5200619999996,
+            "p95": 1112.1537309999985,
+            "worst": 1434.4605889999984
+          },
+          "inference": {
+            "three": {
+              "rounds": 8.7,
+              "deductions": 179.8,
+              "subsetDifferenceUses": 21.1
+            },
+            "four": {
+              "rounds": 8.25,
+              "deductions": 239.65,
+              "subsetDifferenceUses": 20.55
+            }
+          }
+        },
+        {
+          "filter": "C",
+          "scenario": "corner",
+          "runs": 20,
+          "successes": 20,
+          "failures": 0,
+          "adoptionRate": 0.0055663790704146955,
+          "averageAttempts": 179.65,
+          "timingMs": {
+            "average": 532.8548714500005,
+            "p50": 478.95526699999755,
+            "p95": 1199.4349629999997,
+            "worst": 1872.168267000001
+          },
+          "inference": {
+            "three": {
+              "rounds": 9.75,
+              "deductions": 187.95,
+              "subsetDifferenceUses": 19.65
+            },
+            "four": {
+              "rounds": 9.15,
+              "deductions": 251.95,
+              "subsetDifferenceUses": 20.45
+            }
+          }
+        },
+        {
+          "filter": "C",
+          "scenario": "random",
+          "runs": 20,
+          "successes": 20,
+          "failures": 0,
+          "adoptionRate": 0.009592326139088728,
+          "averageAttempts": 104.25,
+          "timingMs": {
+            "average": 430.0210351499998,
+            "p50": 384.319862999997,
+            "p95": 861.006991000002,
+            "worst": 1589.6348579999976
+          },
+          "inference": {
+            "three": {
+              "rounds": 9.5,
+              "deductions": 185.5,
+              "subsetDifferenceUses": 18.9
+            },
+            "four": {
+              "rounds": 8.95,
+              "deductions": 248.85,
+              "subsetDifferenceUses": 19.55
+            }
+          }
+        }
+      ]
+    }
+  }
+}

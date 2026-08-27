@@ -12,6 +12,8 @@ export const CLICK_SCENARIOS = {
   },
 };
 
+export const PRODUCT_DIFFICULTY_MINE_COUNTS = [15, 20, 25];
+
 function percentile(values, fraction) {
   if (values.length === 0) return null;
   const sorted = [...values].sort((a, b) => a - b);
@@ -89,7 +91,7 @@ export async function runBenchmark({
         results.push(result);
         raw[filter].push(result);
         completed += 1;
-        onProgress({ completed, total, filter, scenario, run: run + 1 });
+        onProgress({ completed, total, mineCount, filter, scenario, run: run + 1 });
         if (yieldEvery > 0 && completed % yieldEvery === 0) {
           await new Promise((resolve) => setTimeout(resolve, 0));
         }
@@ -115,3 +117,51 @@ export async function runBenchmark({
   };
 }
 
+export async function runDifficultyBenchmark({
+  mineCounts = PRODUCT_DIFFICULTY_MINE_COUNTS,
+  filters = ["C"],
+  onProgress = () => {},
+  ...options
+} = {}) {
+  const counts = [...mineCounts];
+  if (counts.length === 0) throw new Error("mineCounts must not be empty");
+  if (counts.some((mineCount) => !Number.isInteger(mineCount))) {
+    throw new Error("mineCounts must contain integers");
+  }
+
+  const runs = options.runs ?? 20;
+  const scenarios = options.scenarios ?? Object.keys(CLICK_SCENARIOS);
+  const total = counts.length * filters.length * scenarios.length * runs;
+  const byMineCount = {};
+  let offset = 0;
+
+  for (const mineCount of counts) {
+    byMineCount[mineCount] = await runBenchmark({
+      ...options,
+      runs,
+      mineCount,
+      filters,
+      scenarios,
+      onProgress: (progress) => onProgress({
+        ...progress,
+        completed: offset + progress.completed,
+        total,
+      }),
+    });
+    offset += filters.length * scenarios.length * runs;
+  }
+
+  return {
+    metadata: {
+      createdAt: new Date().toISOString(),
+      runsPerFilterAndScenario: runs,
+      maxAttempts: options.maxAttempts ?? 2_000,
+      mineCounts: counts,
+      suiteSeed: options.suiteSeed ?? "benchmark-v1",
+      filters,
+      scenarios,
+      ...options.environment,
+    },
+    byMineCount,
+  };
+}

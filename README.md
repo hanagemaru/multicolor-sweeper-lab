@@ -39,12 +39,14 @@ npm run serve
 npm test
 npm run check
 npm run benchmark -- 20 benchmark-results/node-latest.json
+npm run benchmark:difficulties -- 20 benchmark-results/node-difficulties-c.json
 ```
 
 外部ライブラリを使わない静的Webアプリなので、依存関係のインストールは不要です。
 
-ブラウザ実測は `benchmark.html` を開き、「測定開始」を押します。生成とSolverは
-Web Worker内で動くため、UIメインスレッドを占有しません。
+ブラウザ実測は `benchmark.html` を開き、15/20/25爆弾から対象を選んで
+「測定開始」を押します。条件Cの生成とSolverはWeb Worker内で動くため、
+UIメインスレッドを占有しません。
 
 `compare-colors.html` では条件B/C/Dを切り替え、決定論的に生成される3盤面セットを
 3色・4色で実プレイ比較できます。「次の3盤面」で同条件の盤面を追加できます。
