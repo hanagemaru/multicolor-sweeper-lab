@@ -1,0 +1,52 @@
+{
+  "metadata": {
+    "createdAt": "2026-08-27T14:34:34.438Z",
+    "runsPerFilterAndScenario": 20,
+    "maxAttempts": 2000,
+    "mineCounts": [15, 20, 25],
+    "suiteSeed": "benchmark-v1",
+    "filters": ["C"],
+    "scenarios": ["center", "near-center", "edge", "corner", "random"],
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "runtime": "Web Worker",
+    "note": "Timing values are rounded to 0.1 ms; inference totals are stored in the Node result and are environment-independent."
+  },
+  "results": {
+    "15": {
+      "adoptionRate": 0.2159827213822894,
+      "averageAttempts": 4.63,
+      "timingMs": { "average": 24.8, "p50": 16.2, "p95": 64.6, "worst": 148.2 },
+      "scenarios": {
+        "center": { "averageAttempts": 3.65, "p50": 16.5, "p95": 61.0, "worst": 87.9 },
+        "near-center": { "averageAttempts": 1.95, "p50": 6.0, "p95": 28.6, "worst": 32.7 },
+        "edge": { "averageAttempts": 4.0, "p50": 23.9, "p95": 57.4, "worst": 68.4 },
+        "corner": { "averageAttempts": 9.1, "p50": 24.8, "p95": 117.6, "worst": 148.2 },
+        "random": { "averageAttempts": 4.45, "p50": 19.7, "p95": 58.1, "worst": 59.9 }
+      }
+    },
+    "20": {
+      "adoptionRate": 0.12853470437017994,
+      "averageAttempts": 7.78,
+      "timingMs": { "average": 38.5, "p50": 25.9, "p95": 121.3, "worst": 203.1 },
+      "scenarios": {
+        "center": { "averageAttempts": 7.05, "p50": 28.4, "p95": 99.4, "worst": 100.3 },
+        "near-center": { "averageAttempts": 5.25, "p50": 17.9, "p95": 93.9, "worst": 142.4 },
+        "edge": { "averageAttempts": 9.35, "p50": 28.9, "p95": 150.2, "worst": 203.1 },
+        "corner": { "averageAttempts": 10.05, "p50": 27.4, "p95": 83.2, "worst": 121.3 },
+        "random": { "averageAttempts": 7.2, "p50": 24.9, "p95": 122.1, "worst": 142.8 }
+      }
+    },
+    "25": {
+      "adoptionRate": 0.011029006286533583,
+      "averageAttempts": 90.67,
+      "timingMs": { "average": 298.6, "p50": 208.8, "p95": 813.0, "worst": 1503.6 },
+      "scenarios": {
+        "center": { "averageAttempts": 47.9, "p50": 188.9, "p95": 402.0, "worst": 515.9 },
+        "near-center": { "averageAttempts": 37.95, "p50": 97.3, "p95": 545.0, "worst": 1078.7 },
+        "edge": { "averageAttempts": 83.6, "p50": 152.4, "p95": 708.0, "worst": 737.0 },
+        "corner": { "averageAttempts": 179.65, "p50": 385.6, "p95": 925.1, "worst": 1503.6 },
+        "random": { "averageAttempts": 104.25, "p50": 333.1, "p95": 736.4, "worst": 1173.3 }
+      }
+    }
+  }
+}
