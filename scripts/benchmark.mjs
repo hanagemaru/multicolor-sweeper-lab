@@ -23,4 +23,3 @@ for (const [filter, metrics] of Object.entries(result.overall)) {
     rounds4: metrics.inference.four.rounds,
   });
 }
-

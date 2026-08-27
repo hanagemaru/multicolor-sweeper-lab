@@ -46,6 +46,33 @@ test("条件A〜Dは段階的に厳しくなる", () => {
   }
 });
 
+test("3色不合格時の探索短絡は採用Seedを変えない", () => {
+  const common = {
+    baseSeed: "difficulty-test-1",
+    filter: "C",
+    maxAttempts: 100,
+    mineCount: 25,
+    firstRow: 4,
+    firstCol: 4,
+    includeTrace: false,
+  };
+  const optimized = generateNoGuess(common);
+  assert.equal(optimized.failed, undefined);
+
+  let unoptimized = null;
+  for (let attempt = 0; attempt < common.maxAttempts; attempt += 1) {
+    const candidate = evaluateCandidate({ ...common, attempt });
+    if (candidate.flags.C) {
+      unoptimized = candidate;
+      break;
+    }
+  }
+
+  assert.notEqual(unoptimized, null);
+  assert.equal(optimized.seed, unoptimized.seed);
+  assert.equal(optimized.attempt, unoptimized.attempt);
+});
+
 test("比較プレイ用B/C/D盤面を決定論的に生成できる", () => {
   for (const filter of ["B", "C", "D"]) {
     const options = {
