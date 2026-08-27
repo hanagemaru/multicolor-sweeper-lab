@@ -20,20 +20,23 @@ export function evaluateCandidate({
   firstRow,
   firstCol,
   includeTrace = false,
+  shortCircuitOnThreeFailure = false,
 }) {
   const seed = attemptSeed(baseSeed, attempt);
   const common = { seed, mineCount, firstRow, firstCol };
   const board3 = generateBoard({ ...common, colorCount: 3 });
-  const board4 = generateBoard({ ...common, colorCount: 4 });
   const three = solveBoard(board3, { includeTrace });
-  const four = solveBoard(board4, { includeTrace });
-  const bothNoGuess = three.noGuess && four.noGuess;
+  const board4 = shortCircuitOnThreeFailure && !three.noGuess
+    ? null
+    : generateBoard({ ...common, colorCount: 4 });
+  const four = board4 === null ? null : solveBoard(board4, { includeTrace });
+  const bothNoGuess = three.noGuess && four?.noGuess === true;
 
   let mono = null;
   if (bothNoGuess) mono = solveBoard(board3, { mode: "mono", includeTrace });
   const colorEssential = bothNoGuess && mono !== null && !mono.noGuess;
   const rounds3 = three.stats.reasoningRounds;
-  const rounds4 = four.stats.reasoningRounds;
+  const rounds4 = four?.stats.reasoningRounds ?? Number.POSITIVE_INFINITY;
 
   return {
     baseSeed,
@@ -93,6 +96,7 @@ export function generateNoGuess({
       firstRow,
       firstCol,
       includeTrace: false,
+      shortCircuitOnThreeFailure: true,
     });
     if (!candidate.flags[filter]) continue;
     const elapsedMs = performance.now() - startedAt;
@@ -117,4 +121,3 @@ export function generateNoGuess({
     failed: true,
   };
 }
-
